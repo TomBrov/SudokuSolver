@@ -1,14 +1,4 @@
-board = [
-    [0,1,0,0,0,0,0,2,0],
-    [3,0,0,0,0,0,0,0,7],
-    [0,0,4,5,0,2,1,0,0],
-    [0,0,6,4,0,5,2,0,0],
-    [0,0,0,0,0,0,0,0,0],
-    [0,0,1,3,0,6,5,0,0],
-    [0,0,5,6,0,4,3,0,0],
-    [6,0,0,0,0,0,0,0,2],
-    [0,8,0,0,0,0,0,9,0]
-]
+from boards import board_1, board_2, board_3
 
 
 def solve(bo):
@@ -56,7 +46,7 @@ def valid(bo, num, pos):
 def print_board(bo):
     for i in range(len(bo)):
         if i % 3 == 0 and i != 0:
-            print("- - - - - - - - - - - - ")
+            print("- - - - - - - - - - - -")
 
         for j in range(len(bo[0])):
             if j % 3 == 0 and j != 0:
@@ -76,8 +66,15 @@ def find_empty(bo):
 
     return None
 
-print_board(board)
-solve(board)
-print("_______________________\n"
-      "")
-print_board(board)
+
+if __name__ == "__main__":
+    boards = {"easy": board_1, "medium": board_2, "hard": board_3}
+    b = input("Please choose your level\n"
+              "Easy, Medium, Hard: ")
+    bo = boards[b]
+
+    if b.isalpha():
+        solve(bo)
+        print_board(bo)
+    else:
+        print("No Level was chosen. Exiting.")
