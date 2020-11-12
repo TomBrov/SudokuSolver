@@ -3,18 +3,21 @@ from makeboard import make_board
 
 
 def main():
-    make_board()
+    new = make_board()
 
     board = input("would you like to solve yourself: y/n  ")
 
     if board.isalpha():
         if board == "y":
-            print_board(grid)
+            return "Good Luck"
         elif board == "n":
-            solve(grid)
-            print(grid)
+            solve(new)
+            print(new)
             exit(0)
         else:
             return "No choice was selected"
     else:
         return "no choice was selected"
+
+if __name__ == "__main__":
+    main()

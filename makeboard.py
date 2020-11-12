@@ -1,18 +1,16 @@
 import getpass
 import random
-from solver import print_board
-
 
 username = getpass.getuser()
 screen = {k + 1: {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0} for k in range(9)}
 
 
 def make_board():
-    grid = [[0 for x in range(9)] for y in range(9)]
+    board = [[0 for x in range(9)] for y in range(9)]
 
     for i in range(9):
         for j in range(9):
-            grid[i][j] = 0
+            board[i][j] = 0
 
     # The range here is the amount
     # of numbers in the grid
@@ -27,29 +25,45 @@ def make_board():
         row = random.randrange(9)
         col = random.randrange(9)
         num = random.randrange(1, 10)
-        while not checkvalid(grid, row, col, num) or grid[row][col] != 0:
+        while not valid(board, row, col, num) or board[row][col] != 0:
             row = random.randrange(9)
             col = random.randrange(9)
             num = random.randrange(1, 10)
-        grid[row][col] = num
+        board[row][col] = num
+    print_board(board)
 
 
-def checkvalid(grid, row, col, num):
+def print_board(board):
+    for i in range(len(board)):
+        if i % 3 == 0 and i != 0:
+            print("- - - - - - - - - - - -")
+
+        for j in range(len(board[0])):
+            if j % 3 == 0 and j != 0:
+                print(" | ", end="")
+
+            if j == 8:
+                print(board[i][j])
+            else:
+                print(str(board[i][j]) + " ", end="")
+
+
+def valid(board, row, col, num):
     # check if in row
     valid = True
     # check row and collumn
     for x in range(9):
-        if grid[x][col] == num:
+        if board[x][col] == num:
             valid = False
     for y in range(9):
-        if grid[row][y] == num:
+        if board[row][y] == num:
             valid = False
-    row_section = row // 3
-    col_section = col // 3
+    rowsection = row // 3
+    colsection = col // 3
     for x in range(3):
         for y in range(3):
             # check if section is valid
-            if grid[row_section * 3 + x][col_section * 3 + y] == num:
+            if board[rowsection * 3 + x][colsection * 3 + y] == num:
                 valid = False
     return valid
 
