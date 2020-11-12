@@ -1,23 +1,25 @@
-from solver import solve, print_board
-from makeboard import make_board
+from solver import solve
+from makeboard import make_board, print_board
 
 
 def main():
-    new = make_board()
+    board = make_board()
 
-    board = input("would you like to solve yourself: y/n  ")
+    choose = input("would you like to solve yourself: y/n  ")
 
-    if board.isalpha():
-        if board == "y":
+    if choose.isalpha():
+        if choose == "y":
+            print_board(board)
             return "Good Luck"
-        elif board == "n":
-            solve(new)
-            print(new)
+        elif choose == "n":
+            solve(board)
+            print(board)
             exit(0)
         else:
             return "No choice was selected"
     else:
         return "no choice was selected"
+
 
 if __name__ == "__main__":
     main()
