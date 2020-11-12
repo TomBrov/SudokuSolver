@@ -1,14 +1,20 @@
 from solver import solve, print_board
-from boards import board_1, board_2, board_3
+from makeboard import make_board
 
 
-boards = {"easy": board_1, "medium": board_2, "hard": board_3}
-b = input("Please choose your level\n"
-          "Easy, Medium, Hard: ")
-bo = boards[b]
+def main():
+    make_board()
 
-if b.isalpha():
-    solve(bo)
-    print_board(bo)
-else:
-    print("No Level was chosen. Exiting.")
+    board = input("would you like to solve yourself: y/n  ")
+
+    if board.isalpha():
+        if board == "y":
+            print_board(grid)
+        elif board == "n":
+            solve(grid)
+            print(grid)
+            exit(0)
+        else:
+            return "No choice was selected"
+    else:
+        return "no choice was selected"

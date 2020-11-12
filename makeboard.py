@@ -32,7 +32,6 @@ def make_board():
             col = random.randrange(9)
             num = random.randrange(1, 10)
         grid[row][col] = num
-    print_board(grid)
 
 
 def checkvalid(grid, row, col, num):
