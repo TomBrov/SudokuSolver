@@ -2,6 +2,11 @@ import getpass
 import random
 from solver import print_board
 
+
+# Make new Board choices file
+
+
+
 username = getpass.getuser()
 screen = {k + 1: {1: 0, 2: 0, 3: 0, 4: 0, 5: 0, 6: 0, 7: 0, 8: 0, 9: 0} for k in range(9)}
 
