@@ -1,5 +1,3 @@
-#make new difficulties
-
 board_1 = [
       [7, 8, 0, 4, 0, 0, 1, 2, 0],
       [6, 0, 0, 0, 7, 5, 0, 0, 9],
@@ -35,18 +33,3 @@ board_3 = [
       [0, 0, 0, 0, 9, 8, 0, 0, 3],
       [0, 9, 5, 0, 0, 3, 0, 0, 0]
     ]
-
-
-def difficulty():
-
-      easy = {"1":board_1, "2":board_2, "3":board_3}
-      diff_dict = {1: easy, }
-
-      diff = input("Choose Sudoku difficulty, from 1 (Easy) to 5 (Tough): ")
-          diff = int(diff)
-          d = diff_dict[diff]
-
-
-
-
-
