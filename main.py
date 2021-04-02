@@ -1,16 +1,21 @@
 from solver import solve, print_board
 from boards import *
+from os import path
 
 
 def main():
     boards = {'1': board_1, '2': board_2, '3': board_3}
 
-    diff = input("Choose a board to solve: ")
+    user = input("What is your name:\n")
+
+    diff = input(f"Hello {user}\n"
+                 "3 Boards are available\n"
+                 "Please choose a board to solve: ")
     board = boards[diff]
     print_board(board)
 
     choice = input("Would you like to solve it yourself?\n"
-                   "Pleae type yes or no:  ")
+                   "Please type yes or no:  ")
 
     if choice == 'yes':
         print("good luck")
