@@ -1,44 +1,51 @@
-def solve(bo):
-    find = find_empty(bo)
-    if not find:
-        return True
-    else:
-        row, col = find
+import numpy as np
+from boards import *
 
-    for i in range(1, 10):
-        if valid(bo, i, (row, col)):
-            bo[row][col] = i
-
-            if solve(bo):
-                return True
-
-            bo[row][col] = 0
-
-    return False
+'''
+Not Done
+Not Done
+Not Done
+Not Done
+Not Done
+'''
 
 
-def valid(bo, num, pos):
-    # Check row
-    for i in range(len(bo[0])):
-        if bo[pos[0]][i] == num and pos[1] != i:
+def solve(board):
+    board = np.array(board)
+
+    solved = False
+    while not solved:
+        zeros = np.where(board == 0)
+        if len(zeros[0]) == 0:
+            solved = True
+            continue
+        zeros = set(zip(zeros[0], zeros[1]))
+
+        for zero in zeros:
+            for num in range(1, 10):
+                if checkRC(board, zero, num):
+                    board[zero[0]][zero[1]] = num
+                else:
+                    continue
+
+    print_board(board)
+
+def checkRC(board, pos, num):
+    for i in range(0, 9):
+        #Check row/col
+        if board[pos[0]][i] == num and pos[1] != i:
+            return False
+        if board[i][pos[1]] == num and pos[0] != i:
             return False
 
-    # Check column
-    for i in range(len(bo)):
-        if bo[i][pos[1]] == num and pos[0] != i:
-            return False
-
-    # Check box
+    #Check box
     box_x = pos[1] // 3
     box_y = pos[0] // 3
 
     for i in range(box_y * 3, box_y * 3 + 3):
         for j in range(box_x * 3, box_x * 3 + 3):
-            if bo[i][j] == num and (i, j) != pos:
+            if board[i][j] == num and (i, j) != pos:
                 return False
-
-    return True
-
 
 def print_board(bo):
     for i in range(len(bo)):
@@ -54,11 +61,4 @@ def print_board(bo):
             else:
                 print(str(bo[i][j]) + " ", end="")
 
-
-def find_empty(bo):
-    for i in range(len(bo)):
-        for j in range(len(bo[0])):
-            if bo[i][j] == 0:
-                return i, j  # row, col
-
-    return None
+solve(board_1)
