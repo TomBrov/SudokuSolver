@@ -22,7 +22,6 @@ def main():
         exit(0)
     elif choice == 'no':
         solve(board)
-        print_board(board)
     else:
         print("Invalid choice. Exiting...")
         exit(0)
